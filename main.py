@@ -1,11 +1,12 @@
 import openai
 import json
 import sys
-
+import os
+import pyttsx3
 openai.api_key = "your api key"
 
 question = None
-
+sec = 5
 def get_api_response(prompt: str) -> str | None:
     text: str | None = None
 
@@ -40,6 +41,9 @@ def create_prompt(message: str, pl: list[str]) -> str:
     prompt: str = ''.join(pl)
     return prompt
 
+engine = pyttsx3.init()
+voices = engine.getProperty('voices')
+engine.setProperty('voice', voices[1].id)
 
 def get_bot_response(user_input: str, prompt_list: list[str]) -> str:
     if 'i\'m naufal' in user_input.lower():
@@ -50,6 +54,14 @@ def get_bot_response(user_input: str, prompt_list: list[str]) -> str:
         return "Naufal is my owner, he is very good at IT and he also interested at youtube"
     elif 'thank' in user_input.lower():
         return "Your Welcome, My Pleasure to help you..."
+    elif 'assalamualaik' in user_input.lower():
+        return "Wa'alaikumsalam, may i help you?"
+    elif 'go' and 'assalamualaikum' in user_input.lower():
+        return "waalaikumsalam, take care!"
+    elif 'shut' and 'down' in user_input.lower():
+        os.system(f'shutdown /s /t {sec}')
+        pyttsx3.speak(f'shutting down in {sec} seconds')
+        return ("Shutting down...")
     else:
         # Load questions and answers from JSON file
         with open('my.json', 'r') as f:
@@ -76,7 +88,7 @@ def main():
     while True:
         user_input: str = input('You: ')
         if user_input.lower() == 'bye':
-            print('Bot: Bye Human!')
+            print('Bot: Bye Byee!')
             break
         response: str = get_bot_response(user_input, prompt_list)
         print(f'Bot: {response}')
