@@ -3,6 +3,7 @@ import json
 import sys
 import os
 import pyttsx3
+import time
 openai.api_key = "your api key"
 
 question = None
@@ -54,7 +55,8 @@ def get_bot_response(user_input: str, prompt_list: list[str]) -> str:
         return "Naufal is my owner, he is very good at IT and he also interested at youtube"
     elif 'thank' in user_input.lower():
         return "Your Welcome, My Pleasure to help you..."
-    elif 'assalamualaik' in user_input.lower():
+    elif 'assalamualaikum' in user_input.lower():
+        time.sleep(2)
         return "Wa'alaikumsalam, may i help you?"
     elif 'go' and 'assalamualaikum' in user_input.lower():
         return "waalaikumsalam, take care!"
@@ -78,6 +80,7 @@ def get_bot_response(user_input: str, prompt_list: list[str]) -> str:
             bot_response = bot_response[pos + 1:].strip()
         else:
             bot_response = "I'm sorry, I didn't understand your question."
+        time.sleep(2)
         return bot_response
 
 def main():
@@ -91,7 +94,9 @@ def main():
             print('Bot: Bye Byee!')
             break
         response: str = get_bot_response(user_input, prompt_list)
+        time.sleep(1)
         print(f'Bot: {response}')
 
 if __name__ == '__main__':
+    time.sleep(1)
     main()
