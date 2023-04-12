@@ -1,12 +1,54 @@
 {
-  "who is your owner": "Naufal is my owner, he is very handsome, and good at software engineering",
-  "who is dasha": "dasha is naufal's wife, dasha was called as (gives from god) she is beautiful, dasha is only loves naufal, she really loves naufal",
-  "who is dasha taran": "dasha taran is naufal's wife, dasha was called as (gives from god) she is beautiful, dasha is only loves naufal, she really loves naufal",
-  "who is naufal's wife": "Dasha Taran, the most beautiful girl (called angel) is his wife",
-  "hi bot": "hi! i'm MF Bot, a smart bot that made by naufal",
-  "Hi bot": "Hi There! i'm MF Bot, a smart bot that made by naufal",
-  "Hello bot": "hello There! i'm MF Bot, a smart bot that made by naufal",
-  "hello bot": "Hello! i'm MF Bot, a smart bot that made by naufal",
-  "who is the person dasha loves": "Dasha taran only loves naufal, she loves him as wide as the ocean",
-  "what is IDN boarding school": "that's where my owner study at. "
+  "questions": [
+    {
+      "question": "who is your owner",
+      "answer": "Naufal is my owner, he is very handsome, and good at software engineering"
+    },
+    {
+      "question": "who is dasha",
+      "answer": "dasha taran is naufal's wife, dasha was called as (gives from god) she is beautiful, dasha is only loves naufal, she really loves naufal"
+    },
+    {
+      "question": ["who is naufal's wife", "who is dasha's husband"],
+      "answer": "Dasha Taran, the most beautiful girl (called angel) is naufal's wife, she really loves naufal"
+    },
+    {
+      "question": ["hi bot", "Hello bot", "p", "hello"],
+      "answer": "hi! i'm MF Bot, a smart bot that made by naufal"
+    },
+    {
+      "question": ["who is abel", "tell me about abel"],
+      "answer": "she is my owner's sister she is 16 yo."
+    },
+    {
+      "question": "who is ambar",
+      "answer": "she is my owner's mother, now she is 44 yo."
+    },
+    {
+      "question": "who is andi",
+      "answer": "he is my owner's dad, now he is 41 yo. he work at kaisc mulia company"
+    },
+    {
+      "question": ["really", "for real"],
+      "answer": "i always give you a fact, i never lie, no cap"
+    },
+    {
+      "question": [
+        "sex",
+        "18+",
+        "porn",
+        "naked",
+        "sexy",
+        "boob",
+        "lesbian",
+        "blowjob",
+        "bikini",
+        "pussy",
+        "cum",
+        "fuck",
+        "ass"
+      ],
+      "answer": "sorry, that sounds negative, try with another question"
+    }
+  ]
 }
