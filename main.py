@@ -43,6 +43,16 @@ def create_prompt(message: str, pl: list[str]) -> str:
     prompt: str = ''.join(pl)
     return prompt
 
+def flush_dns():
+    if os.name == "nt":
+        os.system("ipconfig /flushdns")
+        print_with_typing("DNS cache telah dihapus pada Windows.", 0.02)
+    elif os.name == "posix":
+        os.system("sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder", 0.02)
+        print_with_typing("DNS cache telah dihapus pada sistem.")
+    else:
+        print_with_typing("Maaf, error yang tidak diduga.", 0.02)
+
 def print_with_typing(text: str, delay: float):
     for char in text:
         print(char, end='', flush=True)
@@ -66,30 +76,33 @@ def main():
             print('Bot: Bye Byee!')
             break
         elif user_input.lower() == "i'm naufal":
-            print_with_typing(f'Bot: I know you are Naufal, I was created because of you.', 0.05)
+            print_with_typing(f'Bot: I know you are Naufal, I was created because of you.', 0.02)
             continue
         elif user_input.lower() == "i'm dasha":
-            print_with_typing(f'Bot: I Know You Are dasha, You are my owner\'s wife', 0.05)
+            print_with_typing(f'Bot: I Know You Are dasha, You are my owner\'s wife', 0.02)
             continue
         elif 'who' and 'god' in user_input.lower():
-            print_with_typing(f'Bot: There is no god, but Allah', 0.05)
+            print_with_typing(f'Bot: There is no god, but Allah', 0.02)
             continue
         elif 'thank' in user_input.lower():
-            print_with_typing(f'Bot: Your Welcome, My Pleasure to help you...', 0.05)
+            print_with_typing(f'Bot: Your Welcome, My Pleasure to help you...', 0.02)
             continue
         elif 'who' and "naufal" in user_input.lower():
-            print_with_typing(f'Bot: Naufal is my owner, he is very good at IT and he also interested at youtube.', 0.05)
+            print_with_typing(f'Bot: Naufal is my owner, he is very good at IT and he also interested at youtube.', 0.02)
             continue
         elif user_input.lower() == "assalamualaikum":
-            print_with_typing(f'Bot: Wa\'alaikumsalam, may i help you?', 0.05)
+            print_with_typing(f'Bot: Wa\'alaikumsalam, may i help you?', 0.02)
             continue
         elif user_input.lower() == "real":
-            print_with_typing(f'Bot: it\'s real, no cap', 0.05)
+            print_with_typing(f'Bot: it\'s real, no cap', 0.02)
+            continue
+        elif user_input.lower() == "flush dns":
+            flush_dns()
             continue
         elif "shut" and "down" in user_input.lower():
             os.system(f'shutdown /s /t {sec}')
             pyttsx3.speak(f'shutting down in {sec} seconds')
-            print_with_typing(f'Bot: Shutting down...', 0.05)
+            print_with_typing(f'Bot: Shutting down...', 0.02)
             continue
         else:
             # Load questions and answers from JSON file
@@ -101,7 +114,7 @@ def main():
                     for q in question['question']:
                         if q.lower() in user_input.lower():
                             answer = question['answer']
-                            print_with_typing(f'Bot: {answer}', 0.03)
+                            print_with_typing(f'Bot: {answer}', 0.02)
                             break
                     else:
                         continue
@@ -109,7 +122,7 @@ def main():
                 else:
                     if question['question'].lower() in user_input.lower():
                         answer = question['answer']
-                        print_with_typing(f'Bot: {answer}', 0.03)
+                        print_with_typing(f'Bot: {answer}', 0.02)
                         break
             else:
                 # If no match is found in JSON, generate a response using OpenAI
@@ -125,5 +138,5 @@ def main():
                 
         
 if __name__ == '__main__':
-    time.sleep(0.5)
+    time.sleep(0.3)
     main()
