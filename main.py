@@ -33,6 +33,10 @@ def get_api_response(prompt: str) -> str | None:
     return text
 
 
+engine = pyttsx3.init()
+voices = engine.getProperty('voices')
+engine.setProperty('voice', voices[1].id)
+
 def update_list(message: str, pl: list[str]):
     pl.append(message)
 
@@ -44,14 +48,22 @@ def create_prompt(message: str, pl: list[str]) -> str:
     return prompt
 
 def flush_dns():
-    if os.name == "nt":
-        os.system("ipconfig /flushdns")
-        print_with_typing("DNS cache telah dihapus pada Windows.", 0.02)
-    elif os.name == "posix":
-        os.system("sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder", 0.02)
-        print_with_typing("DNS cache telah dihapus pada sistem.")
-    else:
-        print_with_typing("Maaf, error yang tidak diduga.", 0.02)
+        if os.name == "nt":
+            os.system("ipconfig /flushdns")
+            print_with_typing("DNS cache telah dihapus pada Windows.", 0.02)
+        elif os.name == "posix":
+            os.system("sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder", 0.02)
+            print_with_typing("DNS cache telah dihapus pada sistem.")
+        else:
+            print_with_typing("Maaf, error yang tidak diduga.", 0.02)
+
+def restart():
+        if os.name == "nt":
+            os.system("shutdown -t 0 -r -f" + sec)
+            pyttsx3.speak(f'restarting in {sec} seconds')
+            print_with_typing("restarting in " + sec + " seconds",0.02)
+        else:
+            print_with_typing("tidak bisa reboot")
 
 def print_with_typing(text: str, delay: float):
     for char in text:
@@ -59,9 +71,6 @@ def print_with_typing(text: str, delay: float):
         time.sleep(delay)
     print()
 
-engine = pyttsx3.init()
-voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[1].id)
 
                 
 # main method with write animation
@@ -98,6 +107,9 @@ def main():
             continue
         elif user_input.lower() == "flush dns":
             flush_dns()
+            continue
+        elif user_input.lower() == "restart":
+            restart()
             continue
         elif "shut" and "down" in user_input.lower():
             os.system(f'shutdown /s /t {sec}')
